@@ -8,6 +8,7 @@ import classes.Incident;
 import connect.DBIncident;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 
 /**
@@ -21,9 +22,33 @@ public class IncidentAction {
         DBIncident cc = new DBIncident ();
         
         Connection cn = cc.getConnection();
+        String sql = "insert into incidencies (titol,descripcio,id_prioritat,id_estat,id_usuari_reportador,id_usuari_assignat) values(title,description,id_priority,id_state,id_user_report,id_user_assing)";
         
         PreparedStatement path = null;
         
+        try{
+            
+            path= cn.prepareStatement(sql);
+            path.setString(1,incidencia.getTitle());
+            path.setString(2,incidencia.getDescript());
+            path.setString(1,incidencia.getId_priority());
+            path.setString(1,incidencia.getName_state());
+            path.setString(1,incidencia.getId_user_report());
+            path.setString(1,incidencia.getId_user_assign());
+            
+            path.execute();
+                     
+        }catch(SQLException e){
+            result = "Error al inserir dades"+e.getMessage();
+        }finally{
+            try{
+                if(cn != null){
+                    cn.close();
+                } 
+            }catch(SQLException e){
+                result = "Error al tanca la conexió després d'inserir dades"+e.getMessage();
+            }
+        }
         
     }
 }
