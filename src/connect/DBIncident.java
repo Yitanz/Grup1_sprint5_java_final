@@ -8,12 +8,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBIncident {
+    
     Connection connect = null;
-     String url = "jdbc:mysql://localhost:3306/univeylandia_test2";
-     String user = "root";
-     String password = "alumne";
+    String url = "jdbc:mysql://localhost:3306/univeylandia_test2";
+    String user = "root";
+    String password = "alumne";
      
     public DBIncident(){
+        
         try{
             Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager.getConnection(url,user,password);
@@ -22,9 +24,11 @@ public class DBIncident {
             System.out.println(e.getMessage());
         }
     }
+    
     public Connection getConnection(){
         return connect;
     }
+    
     public void desConnect(){
         connect = null;
     }

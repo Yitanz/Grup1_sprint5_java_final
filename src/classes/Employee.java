@@ -28,8 +28,6 @@ public class Employee {
     private String sexe;
     private String telefon;
     private int id_rol;
-    private int id_dades_empleat;
-    private 
-    
+    private int id_dades_empleat;    
     
 }
