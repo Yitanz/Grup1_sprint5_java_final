@@ -29,7 +29,14 @@ public class Employee {
     private String telefon;
     private int id_rol;
     private int id_dades_empleat;
-    private 
+    private String codi_seg_social;
+    private String num_nomina;
+    private String IBAN;
+    private String especialitat;
+    private String carrec;
+    private Date data_inici_contracte;
+    private Date data_fi_contracte;
+    private int id_horari;
 
     public int getId() {
         return id;
@@ -101,6 +108,38 @@ public class Employee {
 
     public int getId_dades_empleat() {
         return id_dades_empleat;
+    }
+
+    public String getCodi_seg_social() {
+        return codi_seg_social;
+    }
+
+    public String getNum_nomina() {
+        return num_nomina;
+    }
+
+    public String getIBAN() {
+        return IBAN;
+    }
+
+    public String getEspecialitat() {
+        return especialitat;
+    }
+
+    public String getCarrec() {
+        return carrec;
+    }
+
+    public Date getData_inici_contracte() {
+        return data_inici_contracte;
+    }
+
+    public Date getData_fi_contracte() {
+        return data_fi_contracte;
+    }
+
+    public int getId_horari() {
+        return id_horari;
     }
 
     public void setId(int id) {
@@ -175,9 +214,41 @@ public class Employee {
         this.id_dades_empleat = id_dades_empleat;
     }
 
+    public void setCodi_seg_social(String codi_seg_social) {
+        this.codi_seg_social = codi_seg_social;
+    }
+
+    public void setNum_nomina(String num_nomina) {
+        this.num_nomina = num_nomina;
+    }
+
+    public void setIBAN(String IBAN) {
+        this.IBAN = IBAN;
+    }
+
+    public void setEspecialitat(String especialitat) {
+        this.especialitat = especialitat;
+    }
+
+    public void setCarrec(String carrec) {
+        this.carrec = carrec;
+    }
+
+    public void setData_inici_contracte(Date data_inici_contracte) {
+        this.data_inici_contracte = data_inici_contracte;
+    }
+
+    public void setData_fi_contracte(Date data_fi_contracte) {
+        this.data_fi_contracte = data_fi_contracte;
+    }
+
+    public void setId_horari(int id_horari) {
+        this.id_horari = id_horari;
+    }
+
     @Override
     public String toString() {
-        return "Employee{" + "nom=" + nom + ", email=" + email + '}';
+        return "Employee{" + "nom=" + nom + ", cognom1=" + cognom1 + ", sexe=" + sexe + '}';
     }
     
     
