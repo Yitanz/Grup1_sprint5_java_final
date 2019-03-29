@@ -20,7 +20,7 @@ public class IncidentAction {
         String result = null, lats = null;
         DBIncident cc = new DBIncident ();
         
-        Connection cn = new cc;
+        Connection cn = cc.getConnection();
         
         PreparedStatement path = null;
         
