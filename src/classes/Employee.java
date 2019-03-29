@@ -28,10 +28,7 @@ public class Employee {
     private String sexe;
     private String telefon;
     private int id_rol;
-<<<<<<< HEAD
     private int id_dades_empleat;    
-=======
-    private int id_dades_empleat;
     private String codi_seg_social;
     private String num_nomina;
     private String IBAN;
@@ -253,7 +250,4 @@ public class Employee {
     public String toString() {
         return "Employee{" + "nom=" + nom + ", cognom1=" + cognom1 + ", sexe=" + sexe + '}';
     }
-    
->>>>>>> master
-    
 }
