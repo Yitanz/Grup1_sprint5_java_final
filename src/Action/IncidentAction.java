@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 public class IncidentAction {
 
     public static String registerIncident(Incident incidencia) {
-        
+
         String result;
         ResultSet rs;
         String lats = null;
@@ -49,7 +51,7 @@ public class IncidentAction {
 
             path = cn.prepareStatement("select id from incidencies;");
             rs = path.executeQuery();
-            
+
             if (rs.next()) {
                 lats = rs.getString(1);
             }
