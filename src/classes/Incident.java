@@ -11,14 +11,21 @@ package classes;
  */
 public class Incident {
 
-    private String name_state;
+    private int name_state;
     private String title;
     private String descript;
-    private String id_priority;
-    private String id_user_report;
-    private String id_user_assign;
-
-    public Incident(String name_state, String title, String descript, String id_priority, String id_user_report, String id_user_assign) {
+    private int id_priority;
+    private int id_user_report;
+    private int id_user_assign;
+    private int id;
+    private String resultat;
+    
+    public Incident() {
+    }
+    
+    
+    
+    public Incident(String title, String descript, int name_state, int id_priority, int id_user_report, int id_user_assign) {
 
         this.name_state = name_state;
         this.title = title;
@@ -29,7 +36,34 @@ public class Incident {
 
     }
 
-    public void setName_state(String name_state) {
+    public Incident( int id,String title, String descript, int name_state,  int id_priority, int id_user_report, int id_user_assign) {
+        
+        this.name_state = name_state;
+        this.title = title;
+        this.descript = descript;
+        this.id_priority = id_priority;
+        this.id_user_report = id_user_report;
+        this.id_user_assign = id_user_assign;
+        this.id = id;
+    }
+    
+        public Incident( int id,String title, String descript, int name_state,  int id_priority, int id_user_report, int id_user_assign, String resultat) {
+        
+        this.name_state = name_state;
+        this.title = title;
+        this.descript = descript;
+        this.id_priority = id_priority;
+        this.id_user_report = id_user_report;
+        this.id_user_assign = id_user_assign;
+        this.id = id;
+        this.resultat=resultat;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName_state(int name_state) {
 
         this.name_state = name_state;
 
@@ -47,25 +81,29 @@ public class Incident {
     
     }
 
-    public void setId_priority(String id_priority) {
+    public void setId_priority(int id_priority) {
         
         this.id_priority = id_priority;
     
     }
 
-    public void setId_user_report(String id_user_report) {
+    public void setId_user_report(int id_user_report) {
         
         this.id_user_report = id_user_report;
     
     }
 
-    public void setId_user_assign(String id_user_assign) {
+    public void setId_user_assign(int id_user_assign) {
         
         this.id_user_assign = id_user_assign;
     
     }
 
-    public String getName_state() {
+    public void setResultat(String resultat) {
+        this.resultat = resultat;
+    }
+    
+    public int getName_state() {
         
         return name_state;
     
@@ -83,21 +121,30 @@ public class Incident {
     
     }
 
-    public String getId_priority() {
+    public int getId_priority() {
         
         return id_priority;
     
     }
 
-    public String getId_user_report() {
+    public int getId_user_report() {
         
         return id_user_report;
     
     }
 
-    public String getId_user_assign() {
+    public int getId_user_assign() {
         
         return id_user_assign;
     
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getResultat() {
+        return resultat;
+    }
+    
 }
