@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -160,4 +161,87 @@ public class IncidentAction {
         }
         return incidencia;
     }
+    
+        public static String deleteIncident(int key) {
+
+        String result;
+        DBIncident cc = new DBIncident();
+        Incident incidencia = new Incident();
+        PreparedStatement path = null;
+        Connection cn = cc.getConnection();
+        String sql = "delete from incidencies where id=?;";
+
+        try {
+
+            path = cn.prepareStatement(sql);
+            path.setInt(1, key);
+            path.executeUpdate();
+            
+            result = "Incidencia eliminada correctament";
+
+        } catch (SQLException e) {
+
+            result = ("Error al buscar l'incidència"+e );
+
+        } finally {
+
+            try {
+                if (cn != null) {
+                    cn.close();
+                    path.close();
+                }
+
+            } catch (Exception e) {
+            result = ("Error al tancar la conexió" );
+            }
+        }
+        return result;
+    }
+        
+    public static ArrayList<Incident> getList(){
+        
+        ArrayList<Incident>incidentList = new ArrayList<Incident>();
+        PreparedStatement path = null;
+        Connection cn = cc.getConnection();
+        String sql = "select * from incidencies;";
+        
+        try {
+
+            path = cn.prepareStatement(sql);
+            path.setInt(1, key);
+            rs = path.executeQuery();
+
+            if (rs.next()) {
+                incidencia.setId(rs.getInt(1));
+                incidencia.setTitle(rs.getString(2));
+                incidencia.setId_priority(rs.getInt(3));
+                incidencia.setName_state(rs.getInt(4));
+                incidencia.setId_user_report(rs.getInt(5));
+                incidencia.setId_user_assign(rs.getInt(6));
+            }
+            
+            incidencia.setResultat("Element trobat satisfactoriament");
+
+        } catch (SQLException e) {
+
+            incidencia.setResultat("Error al buscar l'incidència"+e );
+
+        } finally {
+
+            try {
+                if (cn != null) {
+                    cn.close();
+                    path.close();
+                }
+
+            } catch (Exception e) {
+            incidencia.setResultat("Error al tancar la conexió" );
+            }
+        }
+        return incidencia;
+        
+        
+        return incidentList;
+    }
+    
 }
