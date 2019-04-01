@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Main;
-
+import classes.Incident;
+import javax.swing.JOptionPane;
 /**
  *
  * @author root
@@ -36,12 +37,12 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        descriptionJF = new javax.swing.JTextArea();
+        prioritatJF = new javax.swing.JComboBox<>();
+        nomJF = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
+        empty = new javax.swing.JButton();
+        insertJF = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -68,29 +69,37 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         jLabel6.setText("Prioritat Incidència:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        descriptionJF.setColumns(20);
+        descriptionJF.setRows(5);
+        jScrollPane2.setViewportView(descriptionJF);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        prioritatJF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
+        prioritatJF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                prioritatJFActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("Introdueix el nom de la incidència");
-
-        jButton1.setText("Enrrere");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        back.setText("Enrrere");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buidar");
+        empty.setText("Buidar");
+        empty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emptyActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Inserir");
+        insertJF.setText("Inserir");
+        insertJF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertJFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,14 +114,14 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prioritatJF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton2)
+                            .addComponent(empty)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton1)
+                            .addComponent(back)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton3))
-                        .addComponent(jTextField2))
+                            .addComponent(insertJF))
+                        .addComponent(nomJF))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59))
         );
@@ -122,20 +131,20 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nomJF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prioritatJF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(back)
+                    .addComponent(empty)
+                    .addComponent(insertJF))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
 
@@ -262,13 +271,13 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void prioritatJFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioritatJFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_prioritatJFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -277,6 +286,35 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void insertJFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertJFActionPerformed
+        //Action for insert incident
+        String nameIn = nomJF.getText();
+        String descriptionIN = descriptionJF.getText();
+        String prioritiIN = prioritatJF.getSelectedItem().toString();
+        int state = 3;
+        
+        int priority=0;
+        
+        if(prioritiIN == "Alta"){
+            priority= 3;
+        }
+        if(prioritiIN == "Mitjana"){
+            priority = 2;
+        }
+        if(prioritiIN == "Baixa"){
+            priority = 1;
+        }
+        
+        Incident incidentOB = new Incident(nameIn,descriptionIN,priority,state);
+        Action.IncidentAction.registerIncident(incidentOB);
+        JOptionPane.showInputDialog("Incidència creada correctament");
+    }//GEN-LAST:event_insertJFActionPerformed
+
+    private void emptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyActionPerformed
+        nomJF.setText("");
+        descriptionJF.setText("");
+    }//GEN-LAST:event_emptyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,15 +352,15 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton back;
+    private javax.swing.JTextArea descriptionJF;
+    private javax.swing.JButton empty;
+    private javax.swing.JButton insertJF;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -338,9 +376,9 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField nomJF;
+    private javax.swing.JComboBox<String> prioritatJF;
     // End of variables declaration//GEN-END:variables
 }

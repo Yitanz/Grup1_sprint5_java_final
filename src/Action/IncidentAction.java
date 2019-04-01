@@ -6,7 +6,6 @@
 package Action;
 
 import classes.Incident;
-import com.mysql.cj.protocol.Resultset;
 import connect.DBIncident;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,25 +26,24 @@ public class IncidentAction {
         DBIncident cc = new DBIncident();
 
         Connection cn = cc.getConnection();
-        String sql = "insert into incidencies (titol,descripcio,id_prioritat,id_estat,id_usuari_reportador,id_usuari_assignat) values(title,description,id_priority,id_state,id_user_report,id_user_assing)";
+        System.out.print(incidencia.getDescript());
+        String sql = "insert into incidencies(null,?,?,?,?,null,null,)";
 
         PreparedStatement path = null;
 
         try {
 
             path = cn.prepareStatement(sql);
-            path.setString(1, incidencia.getTitle());
-            path.setString(2, incidencia.getDescript());
-            path.setInt(1, incidencia.getId_priority());
-            path.setInt(1, incidencia.getName_state());
-            path.setInt(1, incidencia.getId_user_report());
-            path.setInt(1, incidencia.getId_user_assign());
+            path.setString(2, incidencia.getTitle());
+            path.setString(3, incidencia.getDescript());
+            path.setInt(4, incidencia.getId_priority());
+            path.setInt(5, incidencia.getName_state());
 
             path.execute();
 
             path = cn.prepareStatement("select id from incidencies;");
             rs = path.executeQuery();
-
+            
             if (rs.next()) {
                 lats = rs.getString(1);
             }

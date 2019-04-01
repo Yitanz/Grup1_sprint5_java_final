@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 public class DBIncident {
     
     Connection connect = null;
-    String url = "jdbc:mysql://localhost:3306/univeylandia_test2";
+    String url = "jdbc:mysql://localhost:3306/univeylandia_test2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String user = "root";
     String password = "alumne";
      
