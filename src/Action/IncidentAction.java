@@ -140,12 +140,12 @@ public class IncidentAction {
                 incidencia.setId_user_report(rs.getInt(5));
                 incidencia.setId_user_assign(rs.getInt(6));
             }
-            
+
             incidencia.setResultat("Element trobat satisfactoriament");
 
         } catch (SQLException e) {
 
-            incidencia.setResultat("Error al buscar l'incidència"+e );
+            incidencia.setResultat("Error al buscar l'incidència" + e);
 
         } finally {
 
@@ -156,13 +156,13 @@ public class IncidentAction {
                 }
 
             } catch (Exception e) {
-            incidencia.setResultat("Error al tancar la conexió" );
+                incidencia.setResultat("Error al tancar la conexió");
             }
         }
         return incidencia;
     }
-    
-        public static String deleteIncident(int key) {
+
+    public static String deleteIncident(int key) {
 
         String result;
         DBIncident cc = new DBIncident();
@@ -176,12 +176,12 @@ public class IncidentAction {
             path = cn.prepareStatement(sql);
             path.setInt(1, key);
             path.executeUpdate();
-            
+
             result = "Incidencia eliminada correctament";
 
         } catch (SQLException e) {
 
-            result = ("Error al buscar l'incidència"+e );
+            result = ("Error al buscar l'incidència" + e);
 
         } finally {
 
@@ -192,46 +192,46 @@ public class IncidentAction {
                 }
 
             } catch (Exception e) {
-            result = ("Error al tancar la conexió" );
+                result = ("Error al tancar la conexió");
             }
         }
         return result;
     }
-        
-    public static ArrayList<Incident> getList(){
-        
-        ArrayList<Incident>incidentList = new ArrayList<Incident>();
+
+    public static ArrayList<Incident> getList() {
+
+        ArrayList<Incident> incidentList = new ArrayList<Incident>();
         PreparedStatement path = null;
-        ResultSet rs ;
+        ResultSet rs;
         DBIncident cc = new DBIncident();
         Connection cn = cc.getConnection();
         String sql = "select * from incidencies;";
         Incident incidentOb = null;
-        
+
         try {
 
             path = cn.prepareStatement(sql);
             rs = path.executeQuery();
 
-            while(rs.next()) {
-                
+            while (rs.next()) {
+
                 incidentOb = new Incident();
-                
+
                 incidentOb.setId(rs.getInt(1));
                 incidentOb.setTitle(rs.getString(2));
                 incidentOb.setId_priority(rs.getInt(3));
                 incidentOb.setName_state(rs.getInt(4));
                 incidentOb.setId_user_report(rs.getInt(5));
                 incidentOb.setId_user_assign(rs.getInt(6));
-                
-                if(incidentList.isEmpty()){
+
+                if (incidentList.isEmpty()) {
                     incidentList.add(incidentOb);
                 }
             }
-            
+
         } catch (SQLException e) {
 
-            System.out.println("Error al buscar l'incidència"+e );
+            System.out.println("Error al buscar l'incidència" + e);
 
         } finally {
 
@@ -242,10 +242,10 @@ public class IncidentAction {
                 }
 
             } catch (Exception e) {
-            System.out.println("Error al tancar la conexió" );
+                System.out.println("Error al tancar la conexió");
             }
-        }        
+        }
         return incidentList;
     }
-    
+
 }
