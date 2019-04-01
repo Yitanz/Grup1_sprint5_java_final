@@ -20,24 +20,30 @@ import java.util.ArrayList;
 public class IncidentAction {
 
     public static String registerIncident(Incident incidencia) {
+        
         String result;
         ResultSet rs;
         String lats = null;
         DBIncident cc = new DBIncident();
 
         Connection cn = cc.getConnection();
-        System.out.print(incidencia.getDescript());
-        String sql = "insert into incidencies(null,?,?,?,?,null,null,)";
+        System.out.print(incidencia.getId_priority());
+        String sql = "INSERT INTO `incidencies`(`titol`, `descripcio`, `id_prioritat`, `id_estat`, `id_usuari_reportador`) VALUES (?,?,?,?,10)";
 
         PreparedStatement path = null;
 
         try {
 
             path = cn.prepareStatement(sql);
-            path.setString(2, incidencia.getTitle());
-            path.setString(3, incidencia.getDescript());
-            path.setInt(4, incidencia.getId_priority());
-            path.setInt(5, incidencia.getName_state());
+            path.setString(1, incidencia.getTitle());
+            System.out.println(incidencia.getTitle());
+            path.setString(2, incidencia.getDescript());
+            System.out.println(incidencia.getDescript());
+            path.setInt(3, incidencia.getId_priority());
+            System.out.println(incidencia.getId_priority());
+            path.setInt(4, incidencia.getName_state());
+            System.out.println(incidencia.getName_state());
+            //path.setInt(5, 10);
 
             path.execute();
 

@@ -292,6 +292,8 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         String nameIn = nomJF.getText();
         String descriptionIN = descriptionJF.getText();
         String prioritiIN = prioritatJF.getSelectedItem().toString();
+        
+        System.out.println(prioritiIN);
         int state = 3;
         
         int priority=0;
@@ -308,7 +310,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         
         Incident incidentOB = new Incident(nameIn,descriptionIN,priority,state);
         Action.IncidentAction.registerIncident(incidentOB);
-        JOptionPane.showInputDialog("Incidència creada correctament");
+        JOptionPane.showMessageDialog(null,"Incidència creada correctament");
     }//GEN-LAST:event_insertJFActionPerformed
 
     private void emptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyActionPerformed
