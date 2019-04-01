@@ -202,29 +202,36 @@ public class IncidentAction {
         
         ArrayList<Incident>incidentList = new ArrayList<Incident>();
         PreparedStatement path = null;
+        ResultSet rs ;
+        DBIncident cc = new DBIncident();
         Connection cn = cc.getConnection();
         String sql = "select * from incidencies;";
+        Incident incidentOb = null;
         
         try {
 
             path = cn.prepareStatement(sql);
-            path.setInt(1, key);
             rs = path.executeQuery();
 
-            if (rs.next()) {
-                incidencia.setId(rs.getInt(1));
-                incidencia.setTitle(rs.getString(2));
-                incidencia.setId_priority(rs.getInt(3));
-                incidencia.setName_state(rs.getInt(4));
-                incidencia.setId_user_report(rs.getInt(5));
-                incidencia.setId_user_assign(rs.getInt(6));
+            while(rs.next()) {
+                
+                incidentOb = new Incident();
+                
+                incidentOb.setId(rs.getInt(1));
+                incidentOb.setTitle(rs.getString(2));
+                incidentOb.setId_priority(rs.getInt(3));
+                incidentOb.setName_state(rs.getInt(4));
+                incidentOb.setId_user_report(rs.getInt(5));
+                incidentOb.setId_user_assign(rs.getInt(6));
+                
+                if(incidentList.isEmpty()){
+                    incidentList.add(incidentOb);
+                }
             }
             
-            incidencia.setResultat("Element trobat satisfactoriament");
-
         } catch (SQLException e) {
 
-            incidencia.setResultat("Error al buscar l'incidència"+e );
+            System.out.println("Error al buscar l'incidència"+e );
 
         } finally {
 
@@ -235,12 +242,9 @@ public class IncidentAction {
                 }
 
             } catch (Exception e) {
-            incidencia.setResultat("Error al tancar la conexió" );
+            System.out.println("Error al tancar la conexió" );
             }
-        }
-        return incidencia;
-        
-        
+        }        
         return incidentList;
     }
     
