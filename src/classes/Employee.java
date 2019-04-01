@@ -37,6 +37,7 @@ public class Employee {
     private Date data_inici_contracte;
     private Date data_fi_contracte;
     private int id_horari;
+    private String resultat;
 
     public int getId() {
         return id;
@@ -141,6 +142,10 @@ public class Employee {
     public int getId_horari() {
         return id_horari;
     }
+    
+    public String getResultat() {
+        return resultat;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -244,6 +249,10 @@ public class Employee {
 
     public void setId_horari(int id_horari) {
         this.id_horari = id_horari;
+    }
+    
+    public void setResultat(String resultat) {
+        this.resultat = resultat;
     }
 
     @Override
