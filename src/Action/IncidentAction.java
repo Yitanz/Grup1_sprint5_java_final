@@ -83,7 +83,7 @@ public class IncidentAction {
         DBIncident cc = new DBIncident();
 
         Connection cn = cc.getConnection();
-        String sql = "update incidencies set titol?,descripcio?,id_prioritat?,id_estat?,id_usuari_reportador?,id_usuari_assignat? where id = ? ";
+        String sql = "update incidencies set titol = ?,descripcio = ?,id_prioritat = ?,id_estat = ? where id = ? ";
         PreparedStatement path = null;
 
         try {
@@ -93,9 +93,7 @@ public class IncidentAction {
             path.setString(2, incidencia.getDescript());
             path.setInt(3, incidencia.getId_priority());
             path.setInt(4, incidencia.getName_state());
-            path.setInt(5, incidencia.getId_user_report());
-            path.setInt(6, incidencia.getId_user_assign());
-            path.setInt(7, incidencia.getId());
+            path.setInt(5, incidencia.getId());
 
             path.execute();
 

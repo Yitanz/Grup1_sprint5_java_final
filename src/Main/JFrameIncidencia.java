@@ -69,9 +69,9 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        incidentState = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         incidentId = new javax.swing.JTextField();
+        stateCombo = new javax.swing.JComboBox<>();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -232,6 +232,8 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         incidentId.setEditable(false);
 
+        stateCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "to-do", "done" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,7 +267,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                                         .addComponent(jButton7))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(incidentState)
+                                            .addComponent(stateCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(comboPriority, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(incidentName, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(84, 84, 84)
@@ -321,7 +323,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(incidentState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(stateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -363,7 +365,37 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         String titleIncident = incidentName.getText();
         String descriptionIncident = incidentDescript.getText();
         String priorityIncident = comboPriority.getSelectedItem().toString();
-        //String stateIncident = 
+        String stateIncident = stateCombo.getSelectedItem().toString();
+        
+        int priority = 0;
+
+        if (priorityIncident == "Alta") {
+            priority = 3;
+        }
+        if (priorityIncident == "Mitjana") {
+            priority = 2;
+        }
+        if (priorityIncident == "Baixa") {
+            priority = 1;
+        }
+        
+        int state = 0;
+
+        if (stateIncident == "In progress") {
+            state = 3;
+        }
+        if (stateIncident == "to-do") {
+            state = 2;
+        }
+        if (stateIncident == "done") {
+            state = 1;
+        }
+        
+        Incident updateIncident = new Incident (idIncident,titleIncident,descriptionIncident,state,priority);
+        
+        IncidentAction.updateIncident(updateIncident);
+        
+        createTable();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void insertJFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertJFActionPerformed
@@ -409,12 +441,10 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         String id = (incidentTable.getValueAt(index, 0).toString());
         String title = (incidentTable.getValueAt(index, 1).toString());
         String descrypt = (incidentTable.getValueAt(index, 2).toString());
-        String id_state = (incidentTable.getValueAt(index, 4).toString());
         
         incidentId.setText(id);
         incidentName.setText(title);
         incidentDescript.setText(descrypt);
-        incidentState.setText(id_state);
         
     }//GEN-LAST:event_incidentTableMouseClicked
 
@@ -468,7 +498,6 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JTextArea incidentDescript;
     private javax.swing.JTextField incidentId;
     private javax.swing.JTextField incidentName;
-    private javax.swing.JTextField incidentState;
     private javax.swing.JTable incidentTable;
     private javax.swing.JButton insertJF;
     private javax.swing.JButton jButton1;
@@ -495,15 +524,15 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField nomJF;
     private javax.swing.JComboBox<String> prioritatJF;
+    private javax.swing.JComboBox<String> stateCombo;
     // End of variables declaration//GEN-END:variables
 private void createTable() {
         //IncidentAction.getList();
         DefaultTableModel table = new DefaultTableModel(){
-
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    //all cells false
-                    return false;
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
                 }
             };
         table.addColumn("id");

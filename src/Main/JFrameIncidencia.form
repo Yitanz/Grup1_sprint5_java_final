@@ -247,7 +247,7 @@
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="incidentState" max="32767" attributes="0"/>
+                                                  <Component id="stateCombo" max="32767" attributes="0"/>
                                                   <Component id="comboPriority" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="incidentName" alignment="0" max="32767" attributes="0"/>
                                               </Group>
@@ -324,7 +324,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="incidentState" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stateCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -452,8 +452,6 @@
                 <Property name="text" type="java.lang.String" value="Estat:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="incidentState">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ID:"/>
@@ -463,6 +461,20 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="stateCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="In progress"/>
+                    <StringItem index="1" value="to-do"/>
+                    <StringItem index="2" value="done"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

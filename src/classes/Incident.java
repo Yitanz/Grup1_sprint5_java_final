@@ -41,14 +41,12 @@ public class Incident {
 
     }
 
-    public Incident(int id, String title, String descript, int name_state, int id_priority, int id_user_report, int id_user_assign) {
+    public Incident(int id, String title, String descript, int name_state, int id_priority) {
 
         this.name_state = name_state;
         this.title = title;
         this.descript = descript;
         this.id_priority = id_priority;
-        this.id_user_report = id_user_report;
-        this.id_user_assign = id_user_assign;
         this.id = id;
     }
 
