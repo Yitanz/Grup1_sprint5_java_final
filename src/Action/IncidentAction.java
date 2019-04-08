@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author manel
@@ -211,26 +210,27 @@ public class IncidentAction {
         ResultSet rs;
         DBIncident cc = new DBIncident();
         Connection cn = cc.getConnection();
-        String sql = "select * from incidencies;";
+        String sql = "select id,titol,descripcio,id_prioritat,id_estat from incidencies";
         Incident incidentOb = null;
 
         try {
 
             path = cn.prepareStatement(sql);
             rs = path.executeQuery();
-
+            
             while (rs.next()) {
 
                 incidentOb = new Incident();
 
                 incidentOb.setId(rs.getInt(1));
                 incidentOb.setTitle(rs.getString(2));
-                incidentOb.setId_priority(rs.getInt(3));
-                incidentOb.setName_state(rs.getInt(4));
-                incidentOb.setId_user_report(rs.getInt(5));
-                incidentOb.setId_user_assign(rs.getInt(6));
-
-                if (incidentList.isEmpty()) {
+                incidentOb.setDescript(rs.getString(3));
+                incidentOb.setId_priority(4);
+                incidentOb.setName_state(5);
+                
+                if(incidentList.isEmpty()){
+                    incidentList.add(0,incidentOb);
+                }else{
                     incidentList.add(incidentOb);
                 }
             }
@@ -251,6 +251,7 @@ public class IncidentAction {
                 System.out.println("Error al tancar la conexió");
             }
         }
+
         return incidentList;
     }
 

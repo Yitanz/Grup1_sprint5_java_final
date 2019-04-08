@@ -23,9 +23,9 @@ public class JFrameIncidencia extends javax.swing.JFrame {
      * Creates new form JFrameIncidencia
      */
     public JFrameIncidencia() {
+        this.setLocationRelativeTo(null);
         initComponents();
         createTable();
-
     }
 
     /**
@@ -56,17 +56,22 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         incidentTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        incidentName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPriority = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        incidentDescript = new javax.swing.JTextArea();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        incidentState = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        incidentId = new javax.swing.JTextField();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -169,26 +174,31 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
             }
         ));
+        incidentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                incidentTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(incidentTable);
 
         jLabel1.setText("Nom incidència:");
 
-        jTextField1.setText("Nom Incidència");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        incidentName.setText("Nom Incidència");
+        incidentName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                incidentNameActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Prioritat:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
+        comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
 
         jLabel3.setText("Descripció:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        incidentDescript.setColumns(20);
+        incidentDescript.setRows(5);
+        jScrollPane3.setViewportView(incidentDescript);
 
         jButton5.setText("Modificar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +219,19 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         jButton1.setText("Cercar");
 
+        deleteButton.setText("Eliminar");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Estat:");
+
+        jLabel8.setText("ID:");
+
+        incidentId.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -216,36 +239,49 @@ public class JFrameIncidencia extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(84, 84, 84)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(incidentId, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
-                        .addGap(104, 104, 104))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(deleteButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton7))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(incidentState)
+                                            .addComponent(comboPriority, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(incidentName, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(84, 84, 84)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jButton1))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
+                                .addGap(104, 104, 104))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,18 +291,23 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(incidentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(incidentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5)
                             .addComponent(jButton6)
-                            .addComponent(jButton7))
+                            .addComponent(jButton7)
+                            .addComponent(deleteButton))
                         .addGap(16, 16, 16))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -274,9 +315,13 @@ public class JFrameIncidencia extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(incidentState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -309,12 +354,16 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void incidentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incidentNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_incidentNameActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        int idIncident = Integer.parseInt(incidentId.getText());
+        String titleIncident = incidentName.getText();
+        String descriptionIncident = incidentDescript.getText();
+        String priorityIncident = comboPriority.getSelectedItem().toString();
+        //String stateIncident = 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void insertJFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertJFActionPerformed
@@ -341,6 +390,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         Incident incidentOB = new Incident(nameIn, descriptionIN, priority, state);
         Action.IncidentAction.registerIncident(incidentOB);
         JOptionPane.showMessageDialog(null, "Incidència creada correctament");
+        createTable();
     }//GEN-LAST:event_insertJFActionPerformed
 
 
@@ -352,6 +402,27 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void incidentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incidentTableMouseClicked
+        int index = incidentTable.getSelectedRow();
+        
+        String id = (incidentTable.getValueAt(index, 0).toString());
+        String title = (incidentTable.getValueAt(index, 1).toString());
+        String descrypt = (incidentTable.getValueAt(index, 2).toString());
+        String id_state = (incidentTable.getValueAt(index, 4).toString());
+        
+        incidentId.setText(id);
+        incidentName.setText(title);
+        incidentDescript.setText(descrypt);
+        incidentState.setText(id_state);
+        
+    }//GEN-LAST:event_incidentTableMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int idIncident = Integer.parseInt(incidentId.getText());
+        
+        IncidentAction.deleteIncident(idIncident);
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,8 +461,14 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JComboBox<String> comboPriority;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JTextArea descriptionJF;
     private javax.swing.JButton empty;
+    private javax.swing.JTextArea incidentDescript;
+    private javax.swing.JTextField incidentId;
+    private javax.swing.JTextField incidentName;
+    private javax.swing.JTextField incidentState;
     private javax.swing.JTable incidentTable;
     private javax.swing.JButton insertJF;
     private javax.swing.JButton jButton1;
@@ -399,13 +476,14 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -413,34 +491,53 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField nomJF;
     private javax.swing.JComboBox<String> prioritatJF;
     // End of variables declaration//GEN-END:variables
 private void createTable() {
-        DefaultTableModel table = new DefaultTableModel();
-        table.addColumn("ID");
-        table.addColumn("TITOL");
-        table.addColumn("DESCRIPCIÓ");
-        table.addColumn("ID_PRIORITAT");
-        table.addColumn("ID_ESTAT");
-        incidentTable.setModel(table);
+        //IncidentAction.getList();
+        DefaultTableModel table = new DefaultTableModel(){
 
-        IncidentAction inc = new IncidentAction();
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+            };
+        table.addColumn("id");
+        table.addColumn("titol");
+        table.addColumn("descripcio");
+        table.addColumn("id_prioritat");
+        table.addColumn("id_estat");
 
+        //incidentTable.setModel(table);
+        Object [] listIncident = new Object [5];
+        
         ArrayList<Incident> incidentList = IncidentAction.getList();
         
-        int i = 0;
-        for (Incident obj : incidentList) {
-            table.setValueAt(obj.getId(),i,0);
-            table.setValueAt(obj.getTitle(),i,1);
-            table.setValueAt(obj.getDescript(),i,2);
-            table.setValueAt(obj.getId_priority(),i,3);
-            table.setValueAt(obj.getName_state(),i,4);
-            i++;
+        for(Incident inc2:incidentList){
+            
+            listIncident[0] = inc2.getId();
+            System.out.println(inc2.getId());
+            
+            listIncident[1] = inc2.getTitle();
+            System.out.println(inc2.getTitle());
+            
+            listIncident[2] = inc2.getDescript();
+            System.out.println(inc2.getDescript());
+            
+            listIncident[3] = inc2.getId_priority();
+            System.out.println(inc2.getId_priority());
+            
+
+            
+            listIncident[4] = inc2.getName_state();
+            System.out.println(inc2.getName_state());
+            
+            table.addRow(listIncident);
+
         }
         incidentTable.setModel(table);
     }
