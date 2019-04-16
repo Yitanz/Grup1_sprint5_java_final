@@ -12,8 +12,6 @@
         <Property name="text" type="java.lang.String" value="jButton4"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.components.JSpinField" name="jSpinField1">
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>

@@ -13,7 +13,7 @@ public class DBIncident {
     Connection connect = null;
     String url = "jdbc:mysql://localhost:3306/univeylandia_test2";
     String user = "root";
-    String password = "alumne";
+    String password = "";
     //?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 
     public DBIncident() {

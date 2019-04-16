@@ -39,7 +39,6 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton4 = new javax.swing.JButton();
-        jSpinField1 = new com.toedter.components.JSpinField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,7 +46,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionJF = new javax.swing.JTextArea();
-        prioritatJF = new javax.swing.JComboBox<>();
+        prioritatJF = new javax.swing.JComboBox<String>();
         nomJF = new javax.swing.JTextField();
         back = new javax.swing.JButton();
         empty = new javax.swing.JButton();
@@ -58,7 +57,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         incidentName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        comboPriority = new javax.swing.JComboBox<>();
+        comboPriority = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         incidentDescript = new javax.swing.JTextArea();
@@ -71,7 +70,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         incidentId = new javax.swing.JTextField();
-        stateCombo = new javax.swing.JComboBox<>();
+        stateCombo = new javax.swing.JComboBox<String>();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -89,7 +88,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         descriptionJF.setRows(5);
         jScrollPane2.setViewportView(descriptionJF);
 
-        prioritatJF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
+        prioritatJF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alta", "Mitjana", "Baixa" }));
         prioritatJF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prioritatJFActionPerformed(evt);
@@ -192,7 +191,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         jLabel2.setText("Prioritat:");
 
-        comboPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Mitjana", "Baixa" }));
+        comboPriority.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alta", "Mitjana", "Baixa" }));
 
         jLabel3.setText("Descripció:");
 
@@ -232,7 +231,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
 
         incidentId.setEditable(false);
 
-        stateCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "to-do", "done" }));
+        stateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "In progress", "to-do", "done" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -452,6 +451,7 @@ public class JFrameIncidencia extends javax.swing.JFrame {
         int idIncident = Integer.parseInt(incidentId.getText());
         
         IncidentAction.deleteIncident(idIncident);
+        createTable();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
@@ -518,7 +518,6 @@ public class JFrameIncidencia extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
